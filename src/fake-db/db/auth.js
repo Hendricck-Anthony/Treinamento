@@ -10,7 +10,7 @@ const userList = [
         role: 'SA',
         name: 'Osvaldo Batatinha',
         username: 'Osvaldo_Batatinha',
-        email: 'OsvaldoBatatinha.com',
+        email: 'osvaldobatatinha@ui-lib.com',
         avatar: '/assets/images/face-6.jpg',
         age: 150,
     },
