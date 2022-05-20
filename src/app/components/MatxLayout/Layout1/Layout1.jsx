@@ -85,6 +85,7 @@ const Layout1 = () => {
 
     return (
         <Layout1Root className={layoutClasses}>
+            
             {showSidenav && sidenavMode !== 'close' && (
                 <SidenavTheme>
                     <Layout1Sidenav />
@@ -132,20 +133,21 @@ const Layout1 = () => {
                                 </ThemeProvider>
                             )}
                         <Box flexGrow={1} position="relative">
-                            <MatxSuspense>
+                            {/* <MatxSuspense> */}
                                 {/* {renderRoutes(routes)} */}
-                                <Outlet />
-                            </MatxSuspense>
+                                {/* <Outlet /> */}
+                            {/* </MatxSuspense> */}
+                            
                         </Box>
-                        {settings.footer.show && !settings.footer.fixed && (
+                        {/* {settings.footer.show && !settings.footer.fixed && (
                             <Footer />
-                        )}
+                        )} */}
                     </ContentBox>
                 )}
 
-                {settings.footer.show && settings.footer.fixed && <Footer />}
+                {/* {settings.footer.show && settings.footer.fixed && <Footer />} */}
             </LayoutContainer>
-            {settings.secondarySidebar.show && <SecondarySidebar />}
+            {/* {settings.secondarySidebar.show && <SecondarySidebar />} */}
         </Layout1Root>
     )
 }

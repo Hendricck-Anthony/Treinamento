@@ -114,7 +114,7 @@ const NotificationBar = ({ container }) => {
                     <Box sx={{ width: sideNavWidth }}>
                         <Notification>
                             <Icon color="primary">notifications</Icon>
-                            <h5>Notifications</h5>
+                            <h5>Notificações</h5>
                         </Notification>
 
                         {notifications?.map((notification) => (
@@ -172,7 +172,7 @@ const NotificationBar = ({ container }) => {
                         {!!notifications?.length && (
                             <Box sx={{ color: secondary }}>
                                 <Button onClick={clearNotifications}>
-                                    Clear Notifications
+                                    Limpar
                                 </Button>
                             </Box>
                         )}

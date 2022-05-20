@@ -119,7 +119,7 @@ const Layout1Topbar = () => {
         <TopbarRoot>
             <TopbarContainer>
                 <Box display="flex">
-                    <StyledIconButton onClick={handleSidebarToggle}>
+                    {/* <StyledIconButton onClick={handleSidebarToggle}>
                         <Icon>menu</Icon>
                     </StyledIconButton>
 
@@ -135,7 +135,7 @@ const Layout1Topbar = () => {
                         <StyledIconButton>
                             <Icon>star_outline</Icon>
                         </StyledIconButton>
-                    </IconBox>
+                    </IconBox> */}
                 </Box>
                 <Box display="flex" alignItems="center">
                     <MatxSearchBox />
@@ -150,7 +150,7 @@ const Layout1Topbar = () => {
                             <UserMenu>
                                 <Hidden xsDown>
                                     <Span>
-                                        Hi <strong>{user.name}</strong>
+                                        Olá <strong>{user.name}</strong>
                                     </Span>
                                 </Hidden>
                                 <Avatar
@@ -169,16 +169,16 @@ const Layout1Topbar = () => {
                         <StyledItem>
                             <Link to="/page-layouts/user-profile">
                                 <Icon> person </Icon>
-                                <Span> Profile </Span>
+                                <Span> Perfil </Span>
                             </Link>
                         </StyledItem>
                         <StyledItem>
                             <Icon> settings </Icon>
-                            <Span> Settings </Span>
+                            <Span> Configurações </Span>
                         </StyledItem>
                         <StyledItem onClick={logout}>
                             <Icon> power_settings_new </Icon>
-                            <Span> Logout </Span>
+                            <Span> Sair </Span>
                         </StyledItem>
                     </MatxMenu>
                 </Box>

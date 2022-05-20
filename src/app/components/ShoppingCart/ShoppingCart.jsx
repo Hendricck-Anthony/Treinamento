@@ -146,7 +146,7 @@ function ShoppingCart({ container }) {
                     <MiniCart>
                         <CartBox>
                             <Icon color="primary">shopping_cart</Icon>
-                            <h5>Cart</h5>
+                            <h5>Carrinho</h5>
                         </CartBox>
 
                         <Box flexGrow={1} overflow="auto">
@@ -226,7 +226,7 @@ function ShoppingCart({ container }) {
                             color="primary"
                             onClick={handleCheckoutClick}
                         >
-                            Checkout (${totalCost.toFixed(2)})
+                            Finalizar (R$ {totalCost.toFixed(2)})
                         </Button>
                     </MiniCart>
                 </Drawer>

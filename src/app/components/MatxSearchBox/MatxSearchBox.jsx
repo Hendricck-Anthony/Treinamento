@@ -54,7 +54,7 @@ const MatxSearchBox = () => {
                 <SearchContainer>
                     <SearchInput
                         type="text"
-                        placeholder="Search here..."
+                        placeholder="Pesquise aqui..."
                         autoFocus
                     />
                     <IconButton

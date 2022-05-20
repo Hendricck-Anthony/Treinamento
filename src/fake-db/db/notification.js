@@ -5,40 +5,40 @@ const NotificationDB = {
     list: [
         {
             id: shortId.generate(),
-            heading: 'Message',
+            heading: 'Mensagens',
             icon: {
-                name: 'chat',
+                name: 'Super Choque',
                 color: 'primary',
             },
             timestamp: 1570702802573,
-            title: 'New message from Devid',
-            subtitle: 'Hello, Any progress...',
+            title: 'Nova mensagem de Super Choque',
+            subtitle: 'Ta em choque? chama o batman..',
             path: 'chat',
         },
-        {
-            id: shortId.generate(),
-            heading: 'Alert',
-            icon: {
-                name: 'notifications',
-                color: 'error',
-            },
-            timestamp: 1570702702573,
-            title: 'Server overloaded',
-            subtitle: 'Traffice reached 2M',
-            path: 'page-layouts/user-profile',
-        },
-        {
-            id: shortId.generate(),
-            heading: 'Message',
-            icon: {
-                name: 'chat',
-                color: 'primary',
-            },
-            timestamp: 1570502502573,
-            title: 'New message from Goustove',
-            subtitle: 'Hello, send me details',
-            path: 'chat',
-        },
+        // {
+        //     id: shortId.generate(),
+        //     heading: 'Alert',
+        //     icon: {
+        //         name: 'notifications',
+        //         color: 'error',
+        //     },
+        //     timestamp: 1570702702573,
+        //     title: 'Server overloaded',
+        //     subtitle: 'Traffice reached 2M',
+        //     path: 'page-layouts/user-profile',
+        // },
+        // {
+        //     id: shortId.generate(),
+        //     heading: 'Message',
+        //     icon: {
+        //         name: 'chat',
+        //         color: 'primary',
+        //     },
+        //     timestamp: 1570502502573,
+        //     title: 'New message from Goustove',
+        //     subtitle: 'Hello, send me details',
+        //     path: 'chat',
+        // },
     ],
 }
 
