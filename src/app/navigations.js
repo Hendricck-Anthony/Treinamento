@@ -1,6 +1,6 @@
 export const navigations = [
     {
-        name: 'Menu',
+        name: 'Usuarios',
         path: '/dashboard/default',
         icon: 'dashboard',
     },
@@ -79,7 +79,7 @@ export const navigations = [
     //             iconText: 'I',
     //         },
     //         {
-    //             name: 'Menu',
+    //             name: 'menu',
     //             path: '/material/menu',
     //             iconText: 'M',
     //         },

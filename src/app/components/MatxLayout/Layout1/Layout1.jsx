@@ -11,6 +11,8 @@ import SidenavTheme from '../../MatxTheme/SidenavTheme/SidenavTheme'
 import SecondarySidebar from '../../SecondarySidebar/SecondarySidebar'
 import { sidenavCompactWidth, sideNavWidth } from 'app/utils/constant'
 import { Outlet } from 'react-router-dom'
+import UsersTable from 'app/views/material-kit/tables/UsersTable'
+import AppUsersTable from 'app/views/material-kit/tables/AppUsersTable'
 
 const Layout1Root = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -133,10 +135,13 @@ const Layout1 = () => {
                                 </ThemeProvider>
                             )}
                         <Box flexGrow={1} position="relative">
-                            {/* <MatxSuspense> */}
+                            <MatxSuspense>
                                 {/* {renderRoutes(routes)} */}
                                 {/* <Outlet /> */}
-                            {/* </MatxSuspense> */}
+                                
+                                    <AppUsersTable />
+                               
+                            </MatxSuspense>
                             
                         </Box>
                         {/* {settings.footer.show && !settings.footer.fixed && (
