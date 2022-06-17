@@ -1,7 +1,7 @@
 export const navigations = [
     {
         name: 'Usuarios',
-        path: '/dashboard/default',
+        path: '/usuarios',
         icon: 'dashboard',
     },
     // {

@@ -1,13 +1,7 @@
 import React, { Fragment } from 'react'
-import RowCards from './shared/RowCards'
-import StatCards from './shared/StatCards'
-import Campaigns from './shared/Campaigns'
-import { Grid, Card } from '@mui/material'
-import StatCards2 from './shared/StatCards2'
-import DoughnutChart from './shared/Doughnut'
-import UpgradeCard from './shared/UpgradeCard'
+import { Grid } from '@mui/material'
 import { styled, useTheme } from '@mui/system'
-import TopSellingTable from './shared/TopSellingTable'
+import UsersTable from './shared/UsersTable'
 
 
 const ContentBox = styled('div')(({ theme }) => ({
@@ -36,7 +30,7 @@ const H4 = styled('h4')(({ theme }) => ({
     color: theme.palette.text.secondary,
 }))
 
-const Analytics = () => {
+const UsersPage = () => {
     const { palette } = useTheme()
 
     return (
@@ -67,10 +61,11 @@ const Analytics = () => {
                         <UpgradeCard />
                         <Campaigns />
                     </Grid> */}
+                    <UsersTable />
                 </Grid>
             </ContentBox>
         </Fragment>
     )
 }
 
-export default Analytics
+export default UsersPage

@@ -5,12 +5,12 @@ export const authRoles = {
     guest: ['SA', 'ADMIN', 'EDITOR', 'GUEST'], // Everyone has access
 }
 
-// Check out app/views/dashboard/DashboardRoutes.js
-// Only SA & Admin has dashboard access
+// Check out app/views/users/DashboardRoutes.js
+// Only SA & Admin has users access
 
 // const dashboardRoutes = [
 //   {
-//     path: "/dashboard/analytics",
+//     path: "/users/analytics",
 //     component: Analytics,
 //     auth: authRoles.admin <===============
 //   }
@@ -19,8 +19,8 @@ export const authRoles = {
 // Check navigaitons.js
 
 // {
-//   name: "Dashboard",
-//   path: "/dashboard/analytics",
-//   icon: "dashboard",
+//   name: "users",
+//   path: "/users/analytics",
+//   icon: "users",
 //   auth: authRoles.admin <=================
 // }

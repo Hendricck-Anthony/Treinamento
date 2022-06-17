@@ -16,6 +16,7 @@
         "cross-fetch": "^3.1.4",
         "css": "^3.0.0",
         "date-fns": "^2.26.0",
+        "dotenv": "^16.0.1",
         "echarts": "^5.2.2",
         "echarts-for-react": "^3.0.2",
         "formik": "^2.2.9",

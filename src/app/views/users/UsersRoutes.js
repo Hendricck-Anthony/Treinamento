@@ -2,14 +2,14 @@ import React, { lazy } from 'react'
 import Loadable from 'app/components/Loadable/Loadable'
 import { authRoles } from '../../auth/authRoles'
 
-const Analytics = Loadable(lazy(() => import('./Analytics')))
+const UsersPage = Loadable(lazy(() => import('./UsersPage')))
 
-const dashboardRoutes = [
+const usersRoutes = [
     {
-        path: '/dashboard/default',
-        element: <Analytics />,
+        path: '/usuarios',
+        element: <UsersPage />,
         auth: authRoles.admin,
     },
 ]
 
-export default dashboardRoutes
+export default usersRoutes

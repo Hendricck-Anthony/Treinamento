@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     Table,
     TableHead,
@@ -7,6 +7,21 @@ import {
     TableRow,
 } from '@mui/material'
 import { Box, styled } from '@mui/system'
+
+import axios from '../../../../axios'
+import 'dotenv/config'
+const Container = styled('div')(({ theme }) => ({
+    margin: '30px',
+    [theme.breakpoints.down('sm')]: {
+        margin: '16px',
+    },
+    '& .breadcrumb': {
+        marginBottom: '30px',
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '16px',
+        },
+    },
+}))
 
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
@@ -26,39 +41,27 @@ const StyledTable = styled(Table)(({ theme }) => ({
             },
         },
     },
+    
 }))
 
-const subscribarList = [
-    {
-        ID: '1',
-        Nome: 'Hendricck Anthony',
-        NomeDeUsuario: 'HendricckA',
-        Email: 'Hendricck.lino@gmail.com',
-        Role: 'ADMIN',
-    },
-    {
-        ID: '2',
-        Nome: 'Talles Wendrel',
-        NomeDeUsuario: 'TallesW',
-        Email: 'Talles.Wendrel@gmail.com',
-        Role: 'ADMIN',
-    },
-    {
-        ID: '3',
-        Nome: 'Eric Willian',
-        NomeDeUsuario: 'EricW',
-        Email: 'Eric.Willian@gmail.com',
-        Role: 'ADMIN',
-    }
-]
+
+
 
 const UsersTable = () => {
+    
+    const [allusers, setAllUsers] = useState([])
+    useEffect(async()=>{
+        const response= await axios.get('/api/v1/users/searchall')
+        setAllUsers(response.data)
+        console.log(response.data)
+    },[])
     return (
+        <Container>
         <Box width="100%" overflow="auto">
             <StyledTable>
                 <TableHead>
                     <TableRow>
-                        <TableCell width={"5%"}>ID</TableCell>
+                        {/* <TableCell width={"5%"}>ID</TableCell> */}
                         <TableCell>Nome</TableCell>
                         <TableCell>NomeDeUsuario</TableCell>
                         <TableCell>Email</TableCell>
@@ -66,28 +69,30 @@ const UsersTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {subscribarList.map((subscriber, index) => (
+                    {allusers?.map((users, index) => (
                         <TableRow key={index}>
+                            {/* <TableCell align="left">
+                                {users.usr_id}
+                            </TableCell> */}
                             <TableCell align="left">
-                                {subscriber.ID}
+                                {users.usr_name}
                             </TableCell>
                             <TableCell align="left">
-                                {subscriber.Nome}
+                                {users.usr_username}
                             </TableCell>
                             <TableCell align="left">
-                                {subscriber.NomeDeUsuario}
+                                {users.usr_email}
                             </TableCell>
                             <TableCell align="left">
-                                {subscriber.Email}
-                            </TableCell>
-                            <TableCell align="left">
-                                {subscriber.Role}
+                                {users.usr_role}
                             </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </StyledTable>
         </Box>
+    </Container>
+
     )
 }
 
