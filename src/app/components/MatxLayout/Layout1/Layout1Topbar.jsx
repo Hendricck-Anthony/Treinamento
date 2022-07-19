@@ -138,12 +138,12 @@ const Layout1Topbar = () => {
                     </IconBox> */}
                 </Box>
                 <Box display="flex" alignItems="center">
-                    <MatxSearchBox />
-                    <NotificationProvider>
+                    {/* <MatxSearchBox /> */}
+                    {/* <NotificationProvider>
                         <NotificationBar />
-                    </NotificationProvider>
+                    </NotificationProvider> */}
 
-                    <ShoppingCart />
+                    {/* <ShoppingCart /> */}
 
                     <MatxMenu
                         menuButton={
@@ -153,10 +153,10 @@ const Layout1Topbar = () => {
                                         Olá <strong>{user.name}</strong>
                                     </Span>
                                 </Hidden>
-                                <Avatar
+                                {/* <Avatar
                                     src={user.avatar}
                                     sx={{ cursor: 'pointer' }}
-                                />
+                                /> */}
                             </UserMenu>
                         }
                     >

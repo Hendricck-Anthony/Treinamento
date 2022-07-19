@@ -5,7 +5,6 @@ import {
     TableCell,
     TableBody,
     TableRow,
-    
 } from '@mui/material'
 import SimpleCard from 'app/components/SimpleCard'
 import { Box, styled } from '@mui/system'
@@ -49,55 +48,55 @@ const StyledTable = styled(Table)(({ theme }) => ({
 
 
 
-const UsersTable = () => {
+const PolosTable = () => {
     
     const [allusers, setAllUsers] = useState([])
     useEffect(async()=>{
-        const response= await axios.get('/api/v1/users/searchall')
+        const response= await axios.get('/api/v1/polos/searchall')
         setAllUsers(response.data)
         console.log(response.data)
     },[])
     return (
         <Container>
         <Box width="100%" overflow="auto">
-        <SimpleCard>
+            <SimpleCard>
             <StyledTable>
                 <TableHead>
                     <TableRow>
                         {/* <TableCell width={"5%"}>ID</TableCell> */}
                         <TableCell>Nome</TableCell>
-                        <TableCell>NomeDeUsuario</TableCell>
                         <TableCell>E-mail</TableCell>
-                        <TableCell>Role</TableCell>
+                        <TableCell>Presencial</TableCell>
+                        <TableCell>Status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {allusers?.map((users, index) => (
+                    {allusers?.map((polos, index) => (
                         <TableRow key={index}>
                             {/* <TableCell align="left">
                                 {users.usr_id}
                             </TableCell> */}
                             <TableCell align="left">
-                                {users.usr_name}
+                                {polos.pol_name}
                             </TableCell>
                             <TableCell align="left">
-                                {users.usr_username}
+                                {polos.pol_email}
                             </TableCell>
                             <TableCell align="left">
-                                {users.usr_email}
+                                {polos.pol_is_presential}
                             </TableCell>
                             <TableCell align="left">
-                                {users.usr_role}
+                                {polos.pol_status}
                             </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </StyledTable>
             </SimpleCard>
-            </Box>
+        </Box>
     </Container>
 
     )
 }
 
-export default UsersTable
+export default PolosTable

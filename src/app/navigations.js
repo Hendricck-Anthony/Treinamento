@@ -1,13 +1,26 @@
 export const navigations = [
+
+
+    {
+        label: 'PAGES',
+        type: 'label',
+    },
     {
         name: 'Usuarios',
         path: '/usuarios',
-        icon: 'dashboard',
+        icon: 'U',
     },
-    // {
-    //     label: 'PAGES',
-    //     type: 'label',
-    // },
+    {
+        name: 'Polos',
+        path: '/polos',
+        icon: 'P',
+    },
+    {
+        name: 'Matriculas',
+        path: '/registration',
+        icon: 'M',
+    },
+
     // {
     //     name: 'Session/Auth',
     //     icon: 'security',
