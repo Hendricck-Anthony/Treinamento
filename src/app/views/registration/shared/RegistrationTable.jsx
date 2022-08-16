@@ -6,6 +6,7 @@ import {
     TableBody,
     TableRow,
 } from '@mui/material'
+import { Breadcrumb } from 'app/components'
 import SimpleCard from 'app/components/SimpleCard'
 import { Box, styled } from '@mui/system'
 
@@ -54,12 +55,14 @@ const RegistrationTable = () => {
     useEffect(async()=>{
         const response= await axios.get('/api/v1/registration/searchall')
         setAllUsers(response.data)
-        console.log(response.data)
     },[])
     return (
         <Container>
+        <Box className="breadcrumb">
+            <Breadcrumb routeSegments={[{ name: 'Usuarios', path: '/usuarios' }, { name: 'Matrículas' }]} />
+        </Box>
         <Box width="100%" overflow="auto">
-           <SimpleCard>
+           <SimpleCard title='Matrículas'>
             <StyledTable>
                 <TableHead>
                     <TableRow>
