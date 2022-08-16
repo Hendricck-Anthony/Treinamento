@@ -1,8 +1,24 @@
 import React, { Fragment } from 'react'
-import { Grid } from '@mui/material'
-import { styled, useTheme } from '@mui/system'
+import { Button, Grid } from '@mui/material'
+import { styled, useTheme, Box } from '@mui/system'
 import PolosTable from './shared/PolosTable'
 import TableHead from '@mui/material'
+import { Breadcrumb } from 'app/components'
+import SimpleCard from 'app/components/SimpleCard'
+import { useState } from 'react'
+
+const Container = styled('div')(({ theme }) => ({
+    margin: '30px',
+    [theme.breakpoints.down('sm')]: {
+        margin: '16px',
+    },
+    '& .breadcrumb': {
+        marginBottom: '30px',
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '16px',
+        },
+    },
+}))
 
 
 const ContentBox = styled('div')(({ theme }) => ({
@@ -32,37 +48,32 @@ const H4 = styled('h4')(({ theme }) => ({
 }))
 
 const PolosPage = () => {
+    const [showPoleForm,setShowPoleForm] = useState(false)
     const { palette } = useTheme()
 
     return (
         <Fragment>
             <ContentBox className="analytics">
                 <Grid container spacing={3}>
-                    {/* <Grid item lg={8} md={8} sm={12} xs={12}>
-                        <StatCards />
-                        <TopSellingTable />
-                        <StatCards2 />
-                        <H4>Ongoing Projects</H4>
-                        <RowCards />
-                    </Grid> */}
-
-                    {/* <Grid item lg={4} md={4} sm={12} xs={12}>
-                        <Card sx={{ px: 3, py: 2, mb: 3 }}>
-                            <Title>Traffic Sources</Title>
-                            <SubTitle>Last 30 days</SubTitle>
-                            <DoughnutChart
-                                height="300px"
-                                color={[
-                                    palette.primary.dark,
-                                    palette.primary.main,
-                                    palette.primary.light,
-                                ]}
-                            />
-                        </Card>
-                        <UpgradeCard />
-                        <Campaigns />
-                    </Grid> */}
-                    <PolosTable />
+                <Container>
+                    <Box className="breadcrumb">
+                    <Breadcrumb routeSegments={[{ name: 'Usuários', path: '/usuarios' }, { name: 'Polos' }]} />
+                     </Box>
+                    <Box width="100%" overflow="auto">
+                    <SimpleCard 
+                    title="Polos"
+                    button={<Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={()=> {setShowPoleForm(true)}}
+                        >
+                        Cadastrar
+                        </Button>}
+                    >
+                        <PolosTable />
+                        </SimpleCard>
+                     </Box>
+                </Container>
                     
                 </Grid>
             </ContentBox>

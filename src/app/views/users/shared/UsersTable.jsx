@@ -5,25 +5,17 @@ import {
     TableCell,
     TableBody,
     TableRow,
+    Button
     
 } from '@mui/material'
+import { Breadcrumb } from 'app/components'
 import SimpleCard from 'app/components/SimpleCard'
 import { Box, styled } from '@mui/system'
+import UserForm from './UserForm'
 
 import axios from '../../../../axios'
 import 'dotenv/config'
-const Container = styled('div')(({ theme }) => ({
-    margin: '30px',
-    [theme.breakpoints.down('sm')]: {
-        margin: '16px',
-    },
-    '& .breadcrumb': {
-        marginBottom: '30px',
-        [theme.breakpoints.down('sm')]: {
-            marginBottom: '16px',
-        },
-    },
-}))
+
 
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
@@ -49,18 +41,21 @@ const StyledTable = styled(Table)(({ theme }) => ({
 
 
 
-const UsersTable = () => {
-    
+const UsersTable = (props) => {
+   
     const [allusers, setAllUsers] = useState([])
+   
     useEffect(async()=>{
         const response= await axios.get('/api/v1/users/searchall')
         setAllUsers(response.data)
-        console.log(response.data)
-    },[])
+    }
+    ,[props.update])
+
+
     return (
-        <Container>
-        <Box width="100%" overflow="auto">
-        <SimpleCard>
+
+        
+            
             <StyledTable>
                 <TableHead>
                     <TableRow>
@@ -90,14 +85,16 @@ const UsersTable = () => {
                                 {users.usr_role}
                             </TableCell>
                         </TableRow>
+                        
                     ))}
-                </TableBody>
+              </TableBody>
             </StyledTable>
-            </SimpleCard>
-            </Box>
-    </Container>
 
     )
+    
 }
+
+
+
 
 export default UsersTable

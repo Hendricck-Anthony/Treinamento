@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react'
-import { Grid } from '@mui/material'
-import { styled, useTheme } from '@mui/system'
+import React, { Fragment, useState } from 'react'
+import { Button, Grid } from '@mui/material'
+import { Box, styled, useTheme } from '@mui/system'
 import UsersTable from './shared/UsersTable'
+import SimpleCard from 'app/components/SimpleCard'
+import UserForm from './shared/UserForm'
 
 
 const ContentBox = styled('div')(({ theme }) => ({
@@ -30,38 +32,51 @@ const H4 = styled('h4')(({ theme }) => ({
     color: theme.palette.text.secondary,
 }))
 
+const Container = styled('div')(({ theme }) => ({
+    margin: '30px',
+    [theme.breakpoints.down('sm')]: {
+        margin: '16px',
+    },
+    '& .breadcrumb': {
+        marginBottom: '30px',
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '16px',
+        },
+    },
+}))
+
 const UsersPage = () => {
+    const [update,setUpdate]=useState(false)
+    const [showUserForm,setShowUserForm]=useState(false)
     const { palette } = useTheme()
 
     return (
         <Fragment>
             <ContentBox className="analytics">
                 <Grid container spacing={3}>
-                    {/* <Grid item lg={8} md={8} sm={12} xs={12}>
-                        <StatCards />
-                        <TopSellingTable />
-                        <StatCards2 />
-                        <H4>Ongoing Projects</H4>
-                        <RowCards />
-                    </Grid> */}
-
-                    {/* <Grid item lg={4} md={4} sm={12} xs={12}>
-                        <Card sx={{ px: 3, py: 2, mb: 3 }}>
-                            <Title>Traffic Sources</Title>
-                            <SubTitle>Last 30 days</SubTitle>
-                            <DoughnutChart
-                                height="300px"
-                                color={[
-                                    palette.primary.dark,
-                                    palette.primary.main,
-                                    palette.primary.light,
-                                ]}
-                            />
-                        </Card>
-                        <UpgradeCard />
-                        <Campaigns />
-                    </Grid> */}
-                    <UsersTable />
+                <UserForm 
+                    open={showUserForm}
+                    close={()=>{setShowUserForm(false)}}
+                    onSubmit={()=>{setUpdate(!update)}}
+                >
+                </UserForm>
+                <Container>
+                <Box width="100%" overflow="auto">
+                    <SimpleCard 
+                        button={<Button
+                            variant="outlined"
+                            color="primary"
+                            onClick={()=> {setShowUserForm(true)}}
+                            >
+                            Cadastrar
+                            </Button>}
+                        title='Usuários'>
+                        <UsersTable 
+                        update={update}
+                        />
+                    </SimpleCard>
+                </Box>
+                </Container>
                 </Grid>
             </ContentBox>
         </Fragment>

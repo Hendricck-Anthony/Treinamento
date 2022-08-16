@@ -6,23 +6,11 @@ import {
     TableBody,
     TableRow,
 } from '@mui/material'
-import SimpleCard from 'app/components/SimpleCard'
 import { Box, styled } from '@mui/system'
 
 import axios from '../../../../axios'
 import 'dotenv/config'
-const Container = styled('div')(({ theme }) => ({
-    margin: '30px',
-    [theme.breakpoints.down('sm')]: {
-        margin: '16px',
-    },
-    '& .breadcrumb': {
-        marginBottom: '30px',
-        [theme.breakpoints.down('sm')]: {
-            marginBottom: '16px',
-        },
-    },
-}))
+
 
 const StyledTable = styled(Table)(({ theme }) => ({
     whiteSpace: 'pre',
@@ -54,12 +42,8 @@ const PolosTable = () => {
     useEffect(async()=>{
         const response= await axios.get('/api/v1/polos/searchall')
         setAllUsers(response.data)
-        console.log(response.data)
     },[])
     return (
-        <Container>
-        <Box width="100%" overflow="auto">
-            <SimpleCard>
             <StyledTable>
                 <TableHead>
                     <TableRow>
@@ -92,9 +76,7 @@ const PolosTable = () => {
                     ))}
                 </TableBody>
             </StyledTable>
-            </SimpleCard>
-        </Box>
-    </Container>
+
 
     )
 }
