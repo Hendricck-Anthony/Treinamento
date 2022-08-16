@@ -61,7 +61,7 @@ export default function UserForm(props) {
             }
             try {
                 setDialogState("carregando")
-                const response = await axios.post("http://localhost:3001/api/v1/users/createuser",data)
+                const response = await axios.post("http://149.56.66.151:3001/api/v1/users/createuser",data)
                 setDialogState("sucesso")
                 props.onSubmit()
             } catch (error) {
