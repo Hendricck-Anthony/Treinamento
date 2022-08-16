@@ -13,11 +13,14 @@ const CardTitle = styled('div')(({ subtitle }) => ({
   marginBottom: !subtitle && '16px',
 }));
 
-const SimpleCard = ({ children, title, subtitle, icon }) => {
+const SimpleCard = ({ children, title, subtitle, icon, button }) => {
   return (
     <CardRoot elevation={6}>
-      <CardTitle subtitle={subtitle}>{title}</CardTitle>
-      {subtitle && <Box sx={{ mb: 2 }}>{subtitle}</Box>}
+      <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+        <CardTitle subtitle={subtitle}>{title}</CardTitle>
+        {subtitle && <Box sx={{ mb: 2 }}>{subtitle}</Box>}
+        {button}
+      </div>
       {children}
     </CardRoot>
   );
