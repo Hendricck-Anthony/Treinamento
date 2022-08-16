@@ -119,11 +119,11 @@ const Layout1Topbar = () => {
         <TopbarRoot>
             <TopbarContainer>
                 <Box display="flex">
-                    {/* <StyledIconButton onClick={handleSidebarToggle}>
+                    <StyledIconButton onClick={handleSidebarToggle}>
                         <Icon>menu</Icon>
                     </StyledIconButton>
 
-                    <IconBox>
+                    {/* <IconBox>
                         <StyledIconButton>
                             <Icon>mail_outline</Icon>
                         </StyledIconButton>
