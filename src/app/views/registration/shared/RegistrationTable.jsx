@@ -5,6 +5,8 @@ import {
     TableCell,
     TableBody,
     TableRow,
+    Icon,
+    IconButton
 } from '@mui/material'
 import { Breadcrumb } from 'app/components'
 import SimpleCard from 'app/components/SimpleCard'
@@ -12,6 +14,8 @@ import { Box, styled } from '@mui/system'
 
 import axios from '../../../../axios'
 import 'dotenv/config'
+import RegistrationFormEdit from './RegistrationFormEdit'
+
 const Container = styled('div')(({ theme }) => ({
     margin: '30px',
     [theme.breakpoints.down('sm')]: {
@@ -49,14 +53,20 @@ const StyledTable = styled(Table)(({ theme }) => ({
 
 
 
-const RegistrationTable = () => {
+const RegistrationTable = (props) => {
     
+    const [showRegistrationFormEdit,setShowRegistrationFormEdit]=useState(false)
     const [allusers, setAllUsers] = useState([])
+    const [update,setUpdate]=useState(false)
+    const [rid, setId] = useState()
+    
     useEffect(async()=>{
         const response= await axios.get('/api/v1/registration/searchall')
         setAllUsers(response.data)
-    },[])
+    },[props.update])
+    
     return (
+        
         <Container>
         <Box className="breadcrumb">
             <Breadcrumb routeSegments={[{ name: 'Usuarios', path: '/usuarios' }, { name: 'Matrículas' }]} />
@@ -66,30 +76,49 @@ const RegistrationTable = () => {
             <StyledTable>
                 <TableHead>
                     <TableRow>
-                        {/* <TableCell width={"5%"}>ID</TableCell> */}
-                        <TableCell>Status</TableCell>
                         <TableCell>Mês de início</TableCell>
-                        <TableCell>Nome do Aluno</TableCell>
                         <TableCell>E-mail</TableCell>
+                        <TableCell>Nome do Aluno</TableCell>
+                        <TableCell>Status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
+                {showRegistrationFormEdit && <RegistrationFormEdit 
+                        open={showRegistrationFormEdit}
+                        close={()=>{setShowRegistrationFormEdit(false)}}
+                        onSubmit={()=>{setUpdate(!update)}}
+                        rid={rid}
+                    />}
                     {allusers?.map((registration, index) => (
                         <TableRow key={index}>
-                            {/* <TableCell align="left">
-                                {users.usr_id}
-                            </TableCell> */}
-                            <TableCell align="left">
-                                {registration.mat_status}
-                            </TableCell>
                             <TableCell align="left">
                                 {registration.mat_created_at}
+                            </TableCell>
+                            <TableCell align="left">
+                                {registration.mat_email}
                             </TableCell>
                             <TableCell align="left">
                                 {registration.mat_name}
                             </TableCell>
                             <TableCell align="left">
-                                {registration.mat_email}
+                                {registration.mat_status}
+                            </TableCell>
+
+                            <TableCell
+                                title='Matriculas'>
+                                    <IconButton
+                                    variant="outlined"
+                                    color="primary"
+                                    
+                                    onClick={() => { 
+                                        
+                                        setId(registration.mat_id);
+                                        setShowRegistrationFormEdit(true)
+                                        } 
+                                        }
+                                    >
+                                    <Icon color="primary">edit</Icon>
+                                    </IconButton>
                             </TableCell>
                         </TableRow>
                     ))}
