@@ -49,7 +49,7 @@ const SimpleForm = () => {
             [event.target.name]: event.target.value,
         })
     }
-
+    
     const handleDateChange = (date) => {
         setState({ ...state, date })
     }

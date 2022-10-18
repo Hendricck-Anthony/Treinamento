@@ -1,10 +1,9 @@
 import React, { Fragment, useState } from 'react'
-import { Button, Grid } from '@mui/material'
+import { Button, Grid, IconButton, Icon } from '@mui/material'
 import { Box, styled, useTheme } from '@mui/system'
 import UsersTable from './shared/UsersTable'
 import SimpleCard from 'app/components/SimpleCard'
 import UserForm from './shared/UserForm'
-
 
 const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -49,34 +48,35 @@ const UsersPage = () => {
     const [update,setUpdate]=useState(false)
     const [showUserForm,setShowUserForm]=useState(false)
     const { palette } = useTheme()
+    const [refesh,setRefesh]=useState("")
 
     return (
         <Fragment>
             <ContentBox className="analytics">
                 <Grid container spacing={3}>
-                <UserForm 
-                    open={showUserForm}
-                    close={()=>{setShowUserForm(false)}}
-                    onSubmit={()=>{setUpdate(!update)}}
-                >
-                </UserForm>
-                <Container>
-                <Box width="100%" overflow="auto">
-                    <SimpleCard 
-                        button={<Button
-                            variant="outlined"
-                            color="primary"
-                            onClick={()=> {setShowUserForm(true)}}
-                            >
-                            Cadastrar
-                            </Button>}
-                        title='Usuários'>
-                        <UsersTable 
-                        update={update}
-                        />
-                    </SimpleCard>
-                </Box>
-                </Container>
+                    {showUserForm && <UserForm 
+                        open={showUserForm}
+                        close={()=>{setShowUserForm(false)}}
+                        onSubmit={()=>{setUpdate(!update)}}
+                    />}
+                    <Container>
+                        <Box width="100%" overflow="auto">
+                            <SimpleCard 
+                                    button={<Button
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={()=> {setShowUserForm(true)}}
+                                    >
+                                    Cadastrar
+                                    </Button>}
+                                title='Usuários'>
+                                <UsersTable 
+                                    update={update}
+                                    refesh={(parametro) => {setRefesh(parametro)}}
+                                />
+                            </SimpleCard>
+                        </Box>
+                    </Container>
                 </Grid>
             </ContentBox>
         </Fragment>
