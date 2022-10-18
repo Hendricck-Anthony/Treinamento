@@ -11,7 +11,7 @@ const redirectRoute = [
         path: '/',
         exact: true,
         component: () => <Redirect to="/usuarios" />,
-    },
+    }
 ]
 
 const errorRoute = [
