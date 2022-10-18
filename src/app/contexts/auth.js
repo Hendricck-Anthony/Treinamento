@@ -32,7 +32,7 @@ Mock.onPost('/api/auth/login').reply(async (config) => {
     try {
         await new Promise((resolve) => setTimeout(resolve, 1000))
 
-        const { email } = JSON.parse(config.data) 
+        const { email } = JSON.parse(config.data)
         const user = userList.find((u) => u.email === email)
 
         if (!user) {
