@@ -49,6 +49,13 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
                 mat_email: email,
                 mat_name: name,
                 mat_status: status,
+                mat_address: matAddress,
+                mat_address_complement: matComplement,
+                mat_address_number: matNumber,
+                mat_city: matCity,
+                mat_district: matDistrict,
+                mat_postal_code: matCep,
+                mat_uf: matUf
             }
             try {
                 setDialogState("carregando")
@@ -76,6 +83,28 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
     function handleClose() {
         setOpen(false)
     }
+
+    const searchCep = (e) => {
+        const cep = e.target.value.replace(/\D/g, '');
+        fetch('https://viacep.com.br/ws/'+cep+'/json')
+        .then(res => res.json()).then(data => {
+            console.log(data);
+            setmatAddress(data.logradouro);
+            setMatCity(data.localidade);
+            setMatDistrict(data.bairro);
+            setMatUf(data.uf);
+
+        });
+    }
+
+    const [matAddress, setmatAddress] = useState('')
+    const [matComplement, setMatComplement] = useState('')
+    const [matNumber, setMatNumber] = useState('')
+    const [matCity, setMatCity] = useState('')
+    const [matDistrict, setMatDistrict] = useState('')
+    const [matCep, setMatCep] = useState('')
+    const [matUf, setMatUf] = useState('')
+
     
     switch (dialogState) {
         case "formulario":
@@ -88,14 +117,13 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
                 maxWidth="md"
                 
             >
-                <DialogTitle id="form-dialog-title">Cadastro</DialogTitle>
                 <ValidatorForm
                     onSubmit={handleSubmit}
                     onError={() => null}
                     autoComplete="no"
                 >
-                <DialogContent>
-
+            <DialogTitle id="form-dialog-title">Dados Básicos</DialogTitle>
+            <DialogContent>
             <Grid container spacing={1}>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -137,7 +165,7 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
                         label="Nome de Usúario"
                         onChange={handleChange}
                         name="name"
-                        type="name"
+                        type="text"
                         value={name || ''}
                         validators={['required']}
                         errorMessages={['Este campo é obrigatório']}
@@ -162,6 +190,104 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
             </Grid>
         
                 </DialogContent>
+            <DialogTitle id="form-dialog-title">Endereço</DialogTitle>
+            <DialogContent>
+            <Grid container spacing={1}>
+                <Grid item lg={2} md={6} sm={12} xs={12} >
+
+                    <TextValidator
+                        label="CEP"
+                        onChange= {e => setMatCep(e.target.value)}
+                        onBlur={searchCep}
+                        name="cep"
+                        type="text"
+                        value={matCep || ''}
+                        validators={['required']}
+                        errorMessages={['Este campo é obrigatório']}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item lg={6} md={6} sm={12} xs={12} >
+
+                    <TextValidator
+                        label="Logradouro (Ex.: Rua...)"
+                        onChange= {e => setmatAddress(e.target.value)}
+                        name="address"
+                        type="text"
+                        value={matAddress || ''}
+                        validators={['required']}
+                        errorMessages={['Este campo é obrigatório']}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item lg={2.5} md={6} sm={12} xs={12} >
+
+                    <TextValidator
+                        label="Bairro"
+                        onChange= {e => setMatDistrict(e.target.value)}
+                        name="district"
+                        type="text"
+                        value={matDistrict || ''}
+                        validators={['required']}
+                        errorMessages={['Este campo é obrigatório']}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item lg={1.5} md={6} sm={12} xs={12} >
+
+                    <TextValidator
+                        label="Número"
+                        onChange= {e => setMatNumber(e.target.value)}
+                        name="number"
+                        type="text"
+                        value={matNumber || ''}
+                        validators={['required']}
+                        errorMessages={['Este campo é obrigatório']}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item lg={4} md={6} sm={12} xs={12} >
+
+                    <TextValidator
+                        label="Complemento"
+                        onChange= {e => setMatComplement(e.target.value)}
+                        name="complement"
+                        type="text"
+                        value={matComplement || ''}
+                        validators={['required']}
+                        errorMessages={['Este campo é obrigatório']}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item lg={4} md={6} sm={12} xs={12} >
+
+                    <TextValidator
+                        label="Estado"
+                        onChange= {e => setMatUf(e.target.value)}
+                        name="estate"
+                        type="text"
+                        value={matUf || ''}
+                        validators={['required']}
+                        errorMessages={['Este campo é obrigatório']}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item lg={4} md={6} sm={12} xs={12} >
+
+                    <TextValidator
+                        label="Cidade"
+                        onChange= {e => setMatCity(e.target.value)}
+                        name="city"
+                        type="text"
+                        value={matCity || ''}
+                        validators={['required']}
+                        errorMessages={['Este campo é obrigatório']}
+                        fullWidth
+                    />
+                </Grid>
+            </Grid>
+            </DialogContent>
+
                 <DialogActions>
                     <Button
                         color="primary"
