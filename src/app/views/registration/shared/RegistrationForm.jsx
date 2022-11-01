@@ -13,6 +13,7 @@ import axios from '../../../../axios'
 import { DatePicker } from '@mui/lab'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { get } from 'lodash'
 
 export default function RegistrationForm(props) {const [open, setOpen] = React.useState(false)
 
@@ -84,20 +85,23 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
         setOpen(false)
     }
 
-    const searchCep = (e) => {
+    const searchCep = async (e) => {
         const cep = e.target.value.replace(/\D/g, '');
-        fetch('https://viacep.com.br/ws/'+cep+'/json')
-        .then(res => res.json()).then(data => {
-            console.log(data);
-            setmatAddress(data.logradouro);
+        setMatCep(cep)
+        
+        if (cep.length === 8) {
+        
+            const response = await axios.get('https://viacep.com.br/ws/'+cep+'/json')
+            const data = response.data
+            setMatAddress(data.logradouro);
             setMatCity(data.localidade);
             setMatDistrict(data.bairro);
             setMatUf(data.uf);
+        }
+    };
+    
 
-        });
-    }
-
-    const [matAddress, setmatAddress] = useState('')
+    const [matAddress, setMatAddress] = useState('')
     const [matComplement, setMatComplement] = useState('')
     const [matNumber, setMatNumber] = useState('')
     const [matCity, setMatCity] = useState('')
@@ -197,8 +201,7 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
 
                     <TextValidator
                         label="CEP"
-                        onChange= {e => setMatCep(e.target.value)}
-                        onBlur={searchCep}
+                        onChange= {searchCep}
                         name="cep"
                         type="text"
                         value={matCep || ''}
@@ -211,7 +214,7 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
 
                     <TextValidator
                         label="Logradouro (Ex.: Rua...)"
-                        onChange= {e => setmatAddress(e.target.value)}
+                        onChange= {e => setMatAddress(e.target.value)}
                         name="address"
                         type="text"
                         value={matAddress || ''}
