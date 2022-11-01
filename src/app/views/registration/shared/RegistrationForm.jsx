@@ -124,7 +124,7 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
                 >
             <DialogTitle id="form-dialog-title">Dados Básicos</DialogTitle>
             <DialogContent>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} marginTop>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DatePicker
@@ -192,7 +192,7 @@ export default function RegistrationForm(props) {const [open, setOpen] = React.u
                 </DialogContent>
             <DialogTitle id="form-dialog-title">Endereço</DialogTitle>
             <DialogContent>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} marginTop>
                 <Grid item lg={2} md={6} sm={12} xs={12} >
 
                     <TextValidator
