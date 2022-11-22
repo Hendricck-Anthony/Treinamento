@@ -28,3 +28,4 @@ Dockerfile
 Dockerfile.dev
 Dockerfile.prod
 .dockerignore
+.vscode
