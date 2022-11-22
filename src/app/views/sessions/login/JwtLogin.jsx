@@ -102,10 +102,10 @@ const JwtLogin = () => {
                                     size="small"
                                     label="Email"
                                     onChange={handleChange}
-                                    type="email"
+                                    type="name"
                                     name="email"
                                     value={userInfo.email}
-                                    validators={['required', 'isEmail']}
+                                    validators={['required']}
                                     errorMessages={[
                                         'this field is required',
                                         'email is not valid',

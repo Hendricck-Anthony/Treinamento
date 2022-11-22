@@ -5,8 +5,8 @@ import {
     TableCell,
     TableBody,
     TableRow,
-    Icon,
-    IconButton
+    IconButton,
+    Icon
 } from '@mui/material'
 import { Breadcrumb } from 'app/components'
 import SimpleCard from 'app/components/SimpleCard'
@@ -14,7 +14,6 @@ import { Box, styled } from '@mui/system'
 
 import axios from '../../../../axios'
 import 'dotenv/config'
-import RegistrationFormEdit from './RegistrationFormEdit'
 
 const Container = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -53,83 +52,74 @@ const StyledTable = styled(Table)(({ theme }) => ({
 
 
 
-const RegistrationTable = (props) => {
-    
-    const [showRegistrationFormEdit,setShowRegistrationFormEdit]=useState(false)
+const UsersTable = (props) => {
+   
     const [allusers, setAllUsers] = useState([])
-    const [update,setUpdate]=useState(false)
-    const [rid, setId] = useState()
-    
+   
     useEffect(async()=>{
-        const response= await axios.get('/api/v1/registration/searchall')
+        const response= await axios.get('/api/v1/users/searchall')
         setAllUsers(response.data)
-    },[props.update])
-    
+    }
+    ,[props.update])
+
+
     return (
+
         
         <Container>
         <Box className="breadcrumb">
-            <Breadcrumb routeSegments={[{ name: 'Usuarios', path: '/usuarios' }, { name: 'Matrículas' }]} />
+            <Breadcrumb routeSegments={[{ name: 'Usuarios', path: '/usuarios' }, { name: 'Usuários' }]} />
         </Box>
         <Box width="100%" overflow="auto">
-           <SimpleCard title='Matrículas'>
+           <SimpleCard title='Usuários'>
             <StyledTable>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Mês de início</TableCell>
+                        {/* <TableCell width={"5%"}>ID</TableCell> */}
+                        <TableCell>Nome</TableCell>
+                        <TableCell>NomeDeUsuario</TableCell>
                         <TableCell>E-mail</TableCell>
-                        <TableCell>Nome do Aluno</TableCell>
-                        <TableCell>Status</TableCell>
+                        <TableCell>Role</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {showRegistrationFormEdit && <RegistrationFormEdit 
-                        open={showRegistrationFormEdit}
-                        close={()=>{setShowRegistrationFormEdit(false)}}
-                        onSubmit={()=>{setUpdate(!update)}}
-                        rid={rid}
-                    />}
-                    {allusers?.map((registration, index) => (
+                    {allusers?.map((users, index) => (
                         <TableRow key={index}>
+                            {/* <TableCell align="left">
+                                {users.usr_id}
+                            </TableCell> */}
                             <TableCell align="left">
-                                {registration.mat_created_at}
-                            </TableCell>
-                            <TableCell align="left">
-                                {registration.mat_email}
-                            </TableCell>
-                            <TableCell align="left">
-                                {registration.mat_name}
+                                {users.usr_name}
                             </TableCell>
                             <TableCell align="left">
-                                {registration.mat_status}
+                                {users.usr_username}
                             </TableCell>
-
-                            <TableCell
-                                title='Matriculas'>
-                                    <IconButton
-                                    variant="outlined"
-                                    color="primary"
-                                    
-                                    onClick={() => { 
-                                        
-                                        setId(registration.mat_id);
-                                        setShowRegistrationFormEdit(true)
-                                        } 
-                                        }
-                                    >
-                                    <Icon color="primary">edit</Icon>
-                                    </IconButton>
+                            <TableCell align="left">
+                                {users.usr_email}
                             </TableCell>
+                            <TableCell align="left">
+                                {users.usr_role}
+                            </TableCell>
+                            <TableCell>
+                                <IconButton onClick={()=>{props.teste(users.usr_id)}}><Icon color="primary">edit</Icon>
+                                </IconButton>
+                            </TableCell>
+                            
                         </TableRow>
+                        
                     ))}
-                </TableBody>
+              </TableBody>
             </StyledTable>
             </SimpleCard>
         </Box>
     </Container>
 
     )
+    
 }
 
-export default RegistrationTable
+
+
+
+export default UsersTable

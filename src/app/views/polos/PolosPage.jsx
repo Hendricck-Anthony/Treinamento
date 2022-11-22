@@ -1,11 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Button, Grid } from '@mui/material'
-import { styled, useTheme, Box } from '@mui/system'
+import { Box, styled, useTheme } from '@mui/system'
 import PolosTable from './shared/PolosTable'
-import TableHead from '@mui/material'
-import { Breadcrumb } from 'app/components'
 import SimpleCard from 'app/components/SimpleCard'
-import { useState } from 'react'
+import PolosForm from './shared/PolosForm'
 
 const Container = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -19,7 +17,6 @@ const Container = styled('div')(({ theme }) => ({
         },
     },
 }))
-
 
 const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -48,33 +45,38 @@ const H4 = styled('h4')(({ theme }) => ({
 }))
 
 const PolosPage = () => {
+    const [update,setUpdate]=useState(false)    
     const [showPoleForm,setShowPoleForm] = useState(false)
     const { palette } = useTheme()
+    const [refesh,setRefesh]=useState("")
 
     return (
         <Fragment>
             <ContentBox className="analytics">
                 <Grid container spacing={3}>
-                <Container>
-                    <Box className="breadcrumb">
-                    <Breadcrumb routeSegments={[{ name: 'Usuários', path: '/usuarios' }, { name: 'Polos' }]} />
-                     </Box>
-                    <Box width="100%" overflow="auto">
-                    <SimpleCard 
-                    title="Polos"
-                    button={<Button
-                        variant="outlined"
-                        color="primary"
-                        onClick={()=> {setShowPoleForm(true)}}
-                        >
-                        Cadastrar
-                        </Button>}
-                    >
-                        <PolosTable />
-                        </SimpleCard>
-                     </Box>
-                </Container>
-                    
+                {showPoleForm&& <PolosForm 
+                        open={showPoleForm}
+                        close={()=>{setShowPoleForm(false)}}
+                        onSubmit={()=>{setUpdate(!update)}}
+                    />}
+                    <Container>
+                        <Box width="100%" overflow="auto">
+                            <SimpleCard
+                            button={<Button
+                                variant="outlined"
+                                color="primary"
+                                onClick={()=> {setShowPoleForm(true)}}
+                                >
+                                Cadastrar
+                                </Button>}
+                            title='Polos'>
+                            <PolosTable 
+                                update={update}
+                                refesh={(parametro) => {setRefesh(parametro)}}
+                            />
+                            </SimpleCard>
+                        </Box>
+                    </Container>
                 </Grid>
             </ContentBox>
         </Fragment>

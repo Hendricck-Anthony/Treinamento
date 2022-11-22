@@ -1,5 +1,5 @@
 import React from 'react'
-import SimpleForm from './SimpleForm'
+import SimpleDate from './SimpleForm'
 import StepperForm from './StepperForm'
 import { Breadcrumb, SimpleCard } from 'app/components'
 import { Box, styled } from '@mui/system'
@@ -29,7 +29,7 @@ const AppForm = () => {
                 />
             </div>
             <SimpleCard title="Simple Form">
-                <SimpleForm />
+                <SimpleDate />
             </SimpleCard>
             <Box py="12px" />
             <SimpleCard title="stepper form">
