@@ -4,6 +4,8 @@ import { Box, styled, useTheme } from '@mui/system'
 import PolosTable from './shared/PolosTable'
 import SimpleCard from 'app/components/SimpleCard'
 import PolosForm from './shared/PolosForm'
+import { Breadcrumb } from 'app/components'
+
 
 const Container = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -60,6 +62,9 @@ const PolosPage = () => {
                         onSubmit={()=>{setUpdate(!update)}}
                     />}
                     <Container>
+                        <Box className="breadcrumb">
+                            <Breadcrumb routeSegments={[{ name: 'Polos', path: '/Polos'  }]} />
+                        </Box>
                         <Box width="100%" overflow="auto">
                             <SimpleCard
                             button={<Button
@@ -70,7 +75,7 @@ const PolosPage = () => {
                                 Cadastrar
                                 </Button>}
                             title='Polos'>
-                            <PolosTable 
+                             <PolosTable 
                                 update={update}
                                 refesh={(parametro) => {setRefesh(parametro)}}
                             />

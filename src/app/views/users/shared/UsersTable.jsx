@@ -65,11 +65,7 @@ const UsersTable = (props) => {
     return (
 
         <Container>
-        <Box className="breadcrumb">
-            <Breadcrumb routeSegments={[{ name: 'Usuarios', path: '/usuarios' }, { name: 'Usuários' }]} />
-        </Box>
         <Box width="100%" overflow="auto">
-           <SimpleCard title='Usuários'>
             <StyledTable>
                 <TableHead>
                     <TableRow>
@@ -125,7 +121,6 @@ const UsersTable = (props) => {
 
               </TableBody>
             </StyledTable>
-            </SimpleCard>
         </Box>
     </Container>
     )
