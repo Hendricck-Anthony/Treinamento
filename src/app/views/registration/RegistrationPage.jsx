@@ -4,6 +4,7 @@ import { Box, styled, useTheme } from '@mui/system'
 import RegistrationTable from './shared/RegistrationTable'
 import SimpleCard from 'app/components/SimpleCard'
 import RegistrationForm from './shared/RegistrationForm'
+import { Breadcrumb } from 'app/components'
 
 
 const ContentBox = styled('div')(({ theme }) => ({
@@ -61,6 +62,9 @@ const RegistrationPage = () => {
                         onSubmit={()=>{setUpdate(!update)}}
                     />}
                     <Container>
+                        <Box className="breadcrumb">
+                            <Breadcrumb routeSegments={[{ name: 'Matrícula', path: '/Matrículas' }]} />
+                        </Box>
                         <Box width="100%" overflow="auto">
                             <SimpleCard
                                 button={<Button

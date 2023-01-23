@@ -66,9 +66,6 @@ const PolosTable = (props) => {
     return (
         
         <Container>
-        <Box className="breadcrumb">
-            <Breadcrumb routeSegments={[{ name: 'Usuarios', path: '/usuarios' }, { name: 'Polos' }]} />
-        </Box>
         <Box width="100%" overflow="auto">
            <SimpleCard title='Polos'>
             <StyledTable>

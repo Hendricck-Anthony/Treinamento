@@ -68,9 +68,6 @@ const RegistrationTable = (props) => {
     return (
         
         <Container>
-        <Box className="breadcrumb">
-            <Breadcrumb routeSegments={[{ name: 'Usuarios', path: '/usuarios' }, { name: 'Matrículas' }]} />
-        </Box>
         <Box width="100%" overflow="auto">
            <SimpleCard title='Matrículas'>
             <StyledTable>

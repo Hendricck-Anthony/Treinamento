@@ -4,6 +4,7 @@ import { Box, styled, useTheme } from '@mui/system'
 import UsersTable from './shared/UsersTable'
 import SimpleCard from 'app/components/SimpleCard'
 import UserForm from './shared/UserForm'
+import { Breadcrumb } from 'app/components'
 
 const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
@@ -60,14 +61,17 @@ const UsersPage = () => {
                         onSubmit={()=>{setUpdate(!update)}}
                     />}
                     <Container>
+                        <Box className="breadcrumb">
+                            <Breadcrumb routeSegments={[{ name: 'Usuarios',path: '/usuarios' }]} />
+                        </Box>
                         <Box width="100%" overflow="auto">
                             <SimpleCard 
                                     button={<Button
-                                    variant="outlined"
-                                    color="primary"
-                                    onClick={()=> {setShowUserForm(true)}}
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={()=> {setShowUserForm(true)}}
                                     >
-                                    Cadastrar
+                                        Cadastrar
                                     </Button>}
                                 title='Usuários'>
                                 <UsersTable 
